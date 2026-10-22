@@ -1,0 +1,39 @@
+[project]
+name = "arbitrage-cvxpy"
+version = "0.1.0"
+description = "Battery scheduling on German day-ahead prices with cvxpy"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cvxpy>=1.9.3",
+    "demandlib>=0.2.2",
+    "highspy>=1.15.1",
+    "holidays>=0.107",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    # demandlib 0.2.2 turns warnings into errors and trips over pandas 3.1 deprecations
+    "pandas>=3.0,<3.1",
+    "pyarrow>=26.0.0",
+    "requests>=2.34.2",
+    "scipy>=1.18.1",
+]
+
+[project.scripts]
+fetch-data = "arbitrage.cli:fetch_data"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+    "jupyter>=1.1.1",
+    "pytest>=9.1.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.11,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "arbitrage"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
